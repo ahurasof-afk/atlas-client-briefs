@@ -330,8 +330,8 @@ sendBtn.addEventListener('click',async()=>{
  const d=snapshot();const unknown=d.services.filter(s=>s.priority===null).length;
  const missingPlaces=d.services.filter(s=>s.priority&&s.priority!=='exclude'&&s.location.length===0).length;
  const unknownChannels=Object.entries(d.contact_channels.frequency).filter(([k,v])=>v===null).length;
- if(unknown||missingPlaces||unknownChannels){
-  check();deliverFeedback('Пожалуйста, сначала завершите выбор услуг и ответьте на вопросы о каналах обращений.');return;
+ if(missingPlaces||unknownChannels){
+  check();deliverFeedback('Пожалуйста, укажите место выполнения для рекламируемых услуг и ответьте на вопросы о каналах обращений. Нерешённые услуги можно оставить для уточнения.');return;
  }
  if(!shareToken){deliverFeedback('Эта ссылка без персонального приглашения. Попросите специалиста отправить ссылку из сообщения.');return;}
  sendBtn.disabled=true;sendBtn.textContent='Отправляем…';deliverFeedback('Передаём ответы, подождите несколько секунд.');
